@@ -1,6 +1,9 @@
 package com.ebot;
 
 import javax.security.auth.login.LoginException;
+
+import com.listeners.JokenpoListener;
+
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -15,7 +18,7 @@ public class Main {
         String token = config.get("TOKEN");
 
         JDABuilder.createDefault(token, GatewayIntent.MESSAGE_CONTENT, 
-        GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS).addEventListeners(new PongTest()).build();
+        GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS).addEventListeners(new PongTest()).addEventListeners(new JokenpoListener()).build();
    }
 
    public Dotenv getConfig() {
