@@ -65,6 +65,70 @@ public class TicTacLogic {
         return false;
     }
 
+    private int minMax(Boolean isMaximazing) {
+        if(verifyWin("X") == true)
+            return -1;
+        if(verifyWin("O") == true)
+            return 1;
+        if(boardIsFull() == true)
+            return 0;
+
+        if(isMaximazing == true) {
+            int bestScore = Integer.MIN_VALUE;
+            for(int i=0; i < board.length;i++) {
+                if(this.board[i] == " ") {
+                    board[i] = "O";
+                    int score = minMax(false);
+                    board[i] = " ";
+                    if(score > bestScore) 
+                        bestScore = score;
+                }
+            
+            }
+        return bestScore;
+        } else {
+            int bestScore = Integer.MAX_VALUE;
+            for(int i=0; i < board.length;i++) {
+                if(this.board[i] == " ") {
+                    board[i] = "X";
+                    int score = minMax(true);
+                    board[i] = " ";
+                    if(score < bestScore) 
+                        bestScore = score;
+                }
+            
+            }
+        return bestScore;
+        }
+
+    }
+
+    public void machineMove() {
+        int bestScore = Integer.MIN_VALUE;
+        int move = -1;
+
+        for(int i =0; i < board.length; i++) {
+            if(this.board[i] == " ") {
+                board[i] = "O";
+                int score = minMax(false);
+                board[i] = " ";
+                if (score > bestScore) {
+                    bestScore = score;
+                    move = i;
+                }
+            }
+        }
+        board[move] = "O";
+    }
+
+    public boolean boardIsFull() {
+        for(int i=0; i < board.length;i++) {
+            if(this.board[i]==" ")
+                return false;
+        }
+        return true;
+    }
+
     //make a string buffer tom print the board in the discord 
     public StringBuffer printBoard(){
         StringBuffer printBoard = new StringBuffer();
