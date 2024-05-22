@@ -35,6 +35,9 @@ public class TicTacLogic {
 
     //make play and validate them, with is valide put the type in position and if not validate return false
     public Boolean makePlay(int position, String type) {
+        if(position < 0 || position > 9)
+            return false;
+            
         if(board[position] == " ") {
             board[position] = type;
             return true;
@@ -105,7 +108,6 @@ public class TicTacLogic {
             }
         return bestScore;
         }
-
     }
     //function to the machine make movement, starting from the first possible move in the game and calling the minmax to 
     //explore the other possible plays starting from the first

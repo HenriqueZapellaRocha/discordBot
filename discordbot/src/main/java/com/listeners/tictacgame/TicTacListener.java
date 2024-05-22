@@ -28,7 +28,7 @@ public class TicTacListener extends ListenerAdapter{
             TicTacLogic game = TicTacLogic.getInstance();
             MessageChannel channel = event.getChannel();
             //taking the player move
-            game.makePlay(Integer.parseInt(event.getMessage().getContentRaw())-1, "X");
+            if(game.makePlay(Integer.parseInt(event.getMessage().getContentRaw())-1, "X")) {
             channel.sendMessage("```"+TicTacLogic.getInstance().printBoard()+"```").queue();
             //verify winner
             if(game.verifyWin("X")) {
@@ -61,6 +61,7 @@ public class TicTacListener extends ListenerAdapter{
                 gameStarted = false;
                 game.restartGame();
                 return;
+            }
             }
     
         }
