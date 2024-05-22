@@ -1,5 +1,7 @@
 package com.ebot;
 
+import java.util.Scanner;
+
 import javax.security.auth.login.LoginException;
 
 import com.listeners.JokenpoListener;
@@ -35,12 +37,5 @@ public class Main {
             System.out.println(e);
         }
 
-        TicTacLogic board = TicTacLogic.getInstance();
-        System.out.println(board.verifyWin("X"));
-        board.makePlay(2, "O");
-        board.makePlay(5, "O");
-        board.makePlay(8, "O");
-        System.out.println(board.verifyWin("O"));
-        System.out.println(board.printBoard());
     }
 }

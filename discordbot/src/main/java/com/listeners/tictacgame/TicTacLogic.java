@@ -65,16 +65,19 @@ public class TicTacLogic {
         return false;
     }
 
+    //this is the minmax funtion who analyze all possible movements in the game 
     private int minMax(Boolean isMaximazing) {
+        //verify if the game is ended and return the result
         if(verifyWin("X") == true)
             return -1;
         if(verifyWin("O") == true)
             return 1;
         if(boardIsFull() == true)
             return 0;
-
+        // if its max moment
         if(isMaximazing == true) {
             int bestScore = Integer.MIN_VALUE;
+            //analizing all possible movments 
             for(int i=0; i < board.length;i++) {
                 if(this.board[i] == " ") {
                     board[i] = "O";
@@ -86,8 +89,10 @@ public class TicTacLogic {
             
             }
         return bestScore;
+        // if is the min moment
         } else {
             int bestScore = Integer.MAX_VALUE;
+            //analizing all possible movments 
             for(int i=0; i < board.length;i++) {
                 if(this.board[i] == " ") {
                     board[i] = "X";
@@ -102,7 +107,8 @@ public class TicTacLogic {
         }
 
     }
-
+    //function to the machine make movement, starting from the first possible move in the game and calling the minmax to 
+    //explore the other possible plays starting from the first
     public void machineMove() {
         int bestScore = Integer.MIN_VALUE;
         int move = -1;
@@ -120,7 +126,7 @@ public class TicTacLogic {
         }
         board[move] = "O";
     }
-
+    //verify if the board is full 
     public boolean boardIsFull() {
         for(int i=0; i < board.length;i++) {
             if(this.board[i]==" ")
@@ -143,6 +149,10 @@ public class TicTacLogic {
         }
 
         return printBoard;
+    }
+
+    public void restartGame(){
+        TicTacLogic.game = null;
     }
     
 
