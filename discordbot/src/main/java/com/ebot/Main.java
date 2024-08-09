@@ -1,12 +1,14 @@
 package com.ebot;
 
-import java.util.Scanner;
+
 
 import javax.security.auth.login.LoginException;
 
 import com.listeners.JokenpoListener;
+import com.listeners.checkersGame.CheckersGame;
+import com.listeners.checkersGame.checkersGameListener;
 import com.listeners.tictacgame.TicTacListener;
-import com.listeners.tictacgame.TicTacLogic;
+
 
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDABuilder;
@@ -22,8 +24,12 @@ public class Main {
         String token = config.get("TOKEN");
 
         JDABuilder.createDefault(token, GatewayIntent.MESSAGE_CONTENT, 
-        GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS).addEventListeners(new PongTest())
-                                                .addEventListeners(new JokenpoListener()).addEventListeners(new TicTacListener()).build();
+        GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS)
+                                                .addEventListeners(new PongTest())
+                                                .addEventListeners(new JokenpoListener())
+                                                .addEventListeners(new TicTacListener())
+                                                .addEventListeners(new checkersGameListener())
+                                                .build();
    }
 
    public Dotenv getConfig() {

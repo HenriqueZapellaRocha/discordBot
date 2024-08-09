@@ -14,7 +14,7 @@ public class TicTacListener extends ListenerAdapter{
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        //return if ia bot calling my bot
+        //return if a bot calling my bot
         if(event.getAuthor().isBot())
             return;
         //if the game not started and a player is trying to start one
